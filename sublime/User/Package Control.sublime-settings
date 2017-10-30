@@ -1,0 +1,21 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"EditorConfig",
+		"Elixir",
+		"ES6-Toolkit",
+		"Git",
+		"JSX",
+		"Markdown Preview",
+		"MarkdownLivePreview",
+		"Package Control",
+		"RuboCop",
+		"SCSS",
+		"Swift",
+		"Whitespace"
+	]
+}

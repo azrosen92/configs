@@ -1,4 +1,6 @@
 #!/bin/sh
 
 # Link sublime settings.
-ln -s ./Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+ln -s ~/.dev-configs/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+
