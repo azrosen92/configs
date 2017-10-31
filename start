@@ -4,3 +4,6 @@
 rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 ln -s ~/.dev-configs/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 
+# Link vim settings.
+rm ~/.vimrc
+ln -s ~/.dev-configs/vim/.vimrc ~/
