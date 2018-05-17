@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Install vundle for vim plugin management.
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 # Link sublime settings.
 rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 ln -s ~/.dev-configs/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
