@@ -1,0 +1,5 @@
+export PATH="./bin:$PATH"
+export PATH="~/.vimpkg/bin:$PATH"
+export PATH=$PATH:$(gem environment gemdir)
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"

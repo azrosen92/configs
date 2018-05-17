@@ -1,0 +1,5 @@
+for directory in $GO_DIRECTORY/*; do
+	export GOPATH="$directory:$GOPATH"
+
+	export PATH="$directory/bin:$PATH"
+done

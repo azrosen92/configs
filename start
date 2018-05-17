@@ -1,12 +1,27 @@
 #!/bin/sh
+DEV_CONFIGS_ROOT=$HOME/.dev-configs
 
 # Install vundle for vim plugin management.
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
 # Link sublime settings.
-rm -r ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-ln -s ~/.dev-configs/sublime/User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/
+rm -r $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+ln -s $DEV_CONFIGS_ROOT/sublime/User $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/
 
 # Link vim settings.
-rm ~/.vimrc
-ln -s ~/.dev-configs/vim/.vimrc ~/
+rm $HOME/.vimrc
+ln -s $DEV_CONFIGS_ROOT/vim/.vimrc $HOME/
+
+# Link bash_profile
+mv $HOME/.bash_profile_tmp
+ln -s $DEV_CONFIGS_ROOT/bash/.bash_profile $HOME/.bash_profile
+
+# Link all bash_profile dependencies.
+for dotfile in $DEV_CONFIGS_ROOT/dotfiles/; do
+	mv $HOME/.dotfiles/$dotfile $HOME/.dotfiles/${dotfile}_temp
+	ln -s $DEV_CONFIGS_ROOT/bash/dotfiles/$dotfile $HOME/.dotfiles/$dotfile
+done
+
+# Link gitconfig
+rm $HOME/.gitconfig
+ln -s $DEV_CONFIGS_ROOT/git/.gitconfig $HOME/.gitconfig

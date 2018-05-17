@@ -1,0 +1,25 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+name = Aaron Rosen
+email = azrosen92@gmail.com
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	stat = status
+	unstage = reset HEAD --
+	last = log -l HEAD
+	wip = !"git add -A; git ls-files --deleted -z | xargs -0 git rm; git commit -m \"wip\""
+	unwip = !"git log -n 1 | grep -q -c wip && git reset HEAD~1"
+	fix = commit --amend -C HEAD
+	amend = commit --amend
+	rb = rebase
+	rbc = rebase --continue
+	rbs = rebase --skip
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+[push]
+	default = simple
+[core]
+	editor = vim
