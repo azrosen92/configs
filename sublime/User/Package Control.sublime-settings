@@ -5,17 +5,28 @@
 	],
 	"installed_packages":
 	[
+		"Babel",
 		"EditorConfig",
 		"Elixir",
 		"ES6-Toolkit",
 		"Git",
+		"Gitignore",
 		"JSX",
 		"Markdown Preview",
 		"MarkdownLivePreview",
 		"Package Control",
+		"React IDE",
+		"React Native Autocomplete",
+		"ReactJS",
 		"RuboCop",
 		"SCSS",
+		"sublime-rufo",
 		"Swift",
+		"Varnish VCL",
 		"Whitespace"
+	],
+	"repositories":
+	[
+		"https://github.com/ruby-formatter/sublime-rufo"
 	]
 }
