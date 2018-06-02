@@ -1,7 +1,7 @@
-source $HOME/.dotfiles/.alias
-source $HOME/.dotfiles/.env_vars
-source $HOME/.dotfiles/.golang
-source $HOME/.dotfiles/.path
+source $HOME/.dotfiles/alias
+source $HOME/.dotfiles/env_vars
+source $HOME/.dotfiles/golang
+source $HOME/.dotfiles/path
 
 # Simlink everything in $HOME/Documents/code/bash to /usr/sbin.
 ln -s -f $DEV_DIRECTORY/bash/* /usr/local/sbin
@@ -33,4 +33,3 @@ export NVM_DIR="/Users/AaronRosen/.nvm"
 if ssh-add -l | grep "The agent has no identities."; then
 	ssh-add -k ~/.ssh/id_rsa
 fi
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"

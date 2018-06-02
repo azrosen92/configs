@@ -25,6 +25,10 @@ echo "Linking bash_profile"
 rm $HOME/.bash_profile
 ln -s $DEV_CONFIGS_ROOT/bash/.bash_profile $HOME/.bash_profile
 
+# Link bash_profile dependencies
+rm $HOME/.dotfiles/*
+ln -s $DEV_CONFIGS_ROOT/bash/dotfiles/* $HOME/.dotfiles/
+
 # Link gitconfig
 echo "Linking gitconfig"
 rm $HOME/.gitconfig
