@@ -1,5 +1,7 @@
 source $VIMRUNTIME/vimrc_example.vim
 
+set nobackup
+set noswapfile
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
