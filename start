@@ -7,54 +7,26 @@ DEV_CONFIGS_ROOT=$HOME/.dev-configs
 
 ##
 #
-# Some useful functions
-#
-##
-# Thanks thoughtbot! https://github.com/thoughtbot/laptop/blob/master/mac
-append_to_profile() {
-    text="$1"
-    if ! grep -Fqs "$text" "$shell_profile"; then
-        echo "$text" >> "$shell_profile"
-    fi
-
-	# Reload the shell profile
-	if echo $SHELL | grep -q "bash"; then
-		# Disable '-e' exit-on-error since bash_profile might not be expecting
-		# that.
-		set +e
-		. "$shell_profile"
-		set -e
-	fi
-}
-
-##
-#
 # Setup dev configs
 #
 ##
 
 # Install vundle for vim plugin management.
+rm -rf $HOME/.vim/bundle/Vundle.vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
 
-# Link sublime settings.
-rm -r $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-ln -s $DEV_CONFIGS_ROOT/sublime/User $HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/
-
 # Link vim settings.
+echo "Linking vimrc"
 rm $HOME/.vimrc
 ln -s $DEV_CONFIGS_ROOT/vim/.vimrc $HOME/
 
 # Link bash_profile
-mv $HOME/.bash_profile_tmp
+echo "Linking bash_profile"
+rm $HOME/.bash_profile
 ln -s $DEV_CONFIGS_ROOT/bash/.bash_profile $HOME/.bash_profile
 
-# Link all bash_profile dependencies.
-for dotfile in $DEV_CONFIGS_ROOT/dotfiles/; do
-	mv $HOME/.dotfiles/$dotfile $HOME/.dotfiles/${dotfile}_temp
-	ln -s $DEV_CONFIGS_ROOT/bash/dotfiles/$dotfile $HOME/.dotfiles/$dotfile
-done
-
 # Link gitconfig
+echo "Linking gitconfig"
 rm $HOME/.gitconfig
 ln -s $DEV_CONFIGS_ROOT/git/.gitconfig $HOME/.gitconfig
 
@@ -84,9 +56,6 @@ if ! command -v brew >/dev/null; then
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
 fi
-
-append_to_profile '# recommended by brew doctor'
-append_to_profile 'export PATH="/usr/local/bin:$PATH"'
 
 if brew list | grep -Fq brew-cask; then
 	echo "--------------------------------------"
