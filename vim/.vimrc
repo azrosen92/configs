@@ -3,15 +3,21 @@ source $VIMRUNTIME/vimrc_example.vim
 set nobackup
 set noswapfile
 set nocompatible              " be iMproved, required
+set noundofile
 filetype off                  " required
 
 " ~~~~~ General stuff ~~~~~
-set ts=2
+set tw=79
+set ts=4
 set number
 set shiftwidth=2
 syntax on
 filetype indent plugin on
 set autoread
+au FocusGained,BufEnter * :checktime
+" Open new vim windows to the right and bottom
+set splitbelow
+set splitright
 
 " Set leader to space bar.
 let leader="/<space>"
@@ -36,28 +42,17 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
+" Automatically installs vim-plugs if not installed on system
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" ~~~~~~~~~~~~~~~~~ PUT VUNDLEs HERE ~~~~~~~~~~~~~~~~~
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#begin('~/.vim/plugged')
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-sensible'
+Plug 'elixir-editors/vim-elixir'
+call plug#end()

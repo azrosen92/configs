@@ -13,6 +13,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
+else
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+  . ~/.git-completion.bash
 fi
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then

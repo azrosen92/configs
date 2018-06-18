@@ -1,3 +1,7 @@
+# Python
+alias sa="source activate"
+alias sd="source deactivate"
+
 # Swift
 alias pod="bundle exec pod"
 
@@ -12,3 +16,6 @@ alias guard="bundle exec guard"
 alias cask='brew cask'
 alias chrome='open -a Google\ Chrome'
 alias ls='ls -l'
+alias torrent='transmission-remote --download-dir /Users/aaronrosen/Downloads/ --add'
+alias torrent-stop='transmission-remote --stop -tall'
+alias torrent-start='transmission-remote --start --tall'

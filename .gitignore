@@ -8,3 +8,4 @@ Package Control.cache/
 Package Control.ca-certs/
 Package Control.merged-ca-bundle
 *.crt
+*~
