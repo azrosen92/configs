@@ -2,6 +2,7 @@ source $HOME/.dotfiles/alias
 source $HOME/.dotfiles/env_vars
 source $HOME/.dotfiles/golang
 source $HOME/.dotfiles/path
+source $HOME/.dotfiles/custom_scripts
 
 # Simlink everything in $HOME/Documents/code/bash to /usr/sbin.
 ln -s -f $DEV_DIRECTORY/bash/* /usr/local/sbin

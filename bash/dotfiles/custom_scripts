@@ -1,0 +1,23 @@
+#!/bin/bash
+
+archive() {
+  if [ -z $1 ]; then
+	echo "must provide an argument"
+	return 1
+  fi
+
+  if [ ! -f $(pwd)/$1 ] && [ ! -d $(pwd)/$1 ]; then
+	echo "file/directory does not exist"
+	return 1
+  fi
+
+  if [ ! -d $HOME/code/.archive ]; then
+	mkdir -p $HOME/code/.archive
+  fi
+
+  archived=$(pwd)/$1
+  mv $archived $HOME/code/.archive/
+
+  echo "moved $1 to .archive directory"
+  echo "to undo run the command: ~$ mv $HOME/code/.archive/$1 $archived"
+}
