@@ -1,8 +1,8 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-name = Aaron Rosen
-email = azrosen92@gmail.com
+	name = Aaron Rosen
+	email = azrosen92@gmail.com
 [alias]
 	co = checkout
 	br = branch
@@ -23,3 +23,4 @@ email = azrosen92@gmail.com
 	default = simple
 [core]
 	editor = vim
+	excludesfile = /Users/aaronrosen/.gitignore_global

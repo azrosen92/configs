@@ -34,6 +34,12 @@ echo "Linking gitconfig"
 rm $HOME/.gitconfig
 ln -s $DEV_CONFIGS_ROOT/git/.gitconfig $HOME/.gitconfig
 
+# Link global gitignore
+echo "Linking global gitignore"
+rm $HOME/.gitignore_global
+ln -s $DEV_CONFIGS_ROOT/git/.gitignore_global $HOME/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
 ##
 #
 # Install useful tools
