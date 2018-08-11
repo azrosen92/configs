@@ -91,11 +91,18 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " ~~~~~~ ALE stuff ~~~~~
 let g:ale_fixers = {
-\	'python': ['yapf']
+\	'python': ['yapf'],
+\	'typescript': ['prettier', 'eslint'],
+\ 	'javascript': ['prettier', 'eslint']
 \}
 let g:ale_linters = {'python': ['pylint']}
 let g:ale_fix_on_save = 1
 
+" ~~~~~~ TypeScript stuff ~~~~~
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 " ~~~~~~ Elixir stuff ~~~~~~
 
@@ -113,6 +120,9 @@ function! Tab_Or_Complete()
 endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
+
+let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
+let g:ts_auto_open_quickfix = 1
 
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
 nnoremap <C-p> :FZF<CR>
@@ -137,6 +147,10 @@ Plug 'mxw/vim-jsx'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'google/yapf'
+" TypeScript stuff.
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 colo sacredforest
