@@ -21,10 +21,14 @@ set splitbelow
 set splitright
 
 " Set leader to space bar.
-let leader="/<space>"
+let mapleader=","
 
+" Ignore gutter and line numbers when highlighting with mouse.
+set mouse=a 
 " Set jk to escape in insert mode
 inoremap jk <esc>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Auto save everytime buffer is modified.
 function! s:save_buffer() abort
@@ -57,13 +61,17 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " Open NerdTree with ctrl-n
 map <C-n> :NERDTreeToggle<CR>
+nnoremap <Leader>f :NERDTreeFind<Enter>
 " Close vim if only open window is NerdTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '📪'
 let g:NERDTreeDirArrowCollapsible = '📫'
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeShowHidden = 1
+
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtrej highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
@@ -81,9 +89,13 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
-" ~~~~~~ Python stuff ~~~~~
-map <C-Y> :call yapf#YAPF()<cr>
-imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+" ~~~~~~ ALE stuff ~~~~~
+let g:ale_fixers = {
+\	'python': ['yapf']
+\}
+let g:ale_linters = {'python': ['pylint']}
+let g:ale_fix_on_save = 1
+
 
 " ~~~~~~ Elixir stuff ~~~~~~
 
@@ -102,6 +114,9 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
+" ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
+nnoremap <C-p> :FZF<CR>
+
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -116,10 +131,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'elixir-editors/vim-elixir'
 Plug 'KKPMW/sacredforest-vim'
-Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'mxw/vim-jsx'
+Plug 'mileszs/ack.vim'
+Plug 'w0rp/ale'
+Plug 'google/yapf'
 call plug#end()
 
 colo sacredforest

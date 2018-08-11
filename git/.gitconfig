@@ -19,6 +19,7 @@
 	rbc = rebase --continue
 	rbs = rebase --skip
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+	update = !"git co master && git pull && git co - && git rebase master"
 [push]
 	default = simple
 [core]

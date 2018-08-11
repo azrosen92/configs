@@ -37,3 +37,5 @@ export NVM_DIR="/Users/AaronRosen/.nvm"
 if ssh-add -l | grep "The agent has no identities."; then
 	ssh-add -k ~/.ssh/id_rsa
 fi
+
+source $HOME/.bash_local
