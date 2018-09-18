@@ -19,3 +19,5 @@ alias ls='ls -l'
 alias torrent='transmission-remote --download-dir /Users/aaronrosen/Downloads/ --add'
 alias torrent-stop='transmission-remote --stop -tall'
 alias torrent-start='transmission-remote --start --tall'
+
+alias dc='docker-compose up --build'

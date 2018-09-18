@@ -7,11 +7,15 @@ set noundofile
 filetype off                  " required
 
 " ~~~~~ General stuff ~~~~~
-set colorcolumn=80
+set colorcolumn=120
 set tw=79
-set ts=4
 set number
+
+" Tabs inserted as 2 spaces.
+set tabstop=2
 set shiftwidth=2
+set expandtab
+
 syntax on
 filetype indent plugin on
 set autoread
@@ -91,11 +95,16 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
 " ~~~~~~ ALE stuff ~~~~~
 let g:ale_fixers = {
-\	'python': ['yapf'],
-\	'typescript': ['prettier', 'eslint'],
-\ 	'javascript': ['prettier', 'eslint']
+\   'python': ['yapf'],
+\	  'typescript': ['prettier'],
+\ 	'javascript': ['prettier'],
+\ 	'scss': ['stylelint']
 \}
-let g:ale_linters = {'python': ['pylint']}
+let g:ale_linters = {
+\	'python': ['pylint'],
+\ 	'typescript': ['stylelint'],
+\   'javascript': ['eslint']
+\}
 let g:ale_fix_on_save = 1
 
 " ~~~~~~ TypeScript stuff ~~~~~
@@ -124,6 +133,9 @@ endfunction
 let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
 let g:ts_auto_open_quickfix = 1
 
+" ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
+autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
+
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
 nnoremap <C-p> :FZF<CR>
 
@@ -147,6 +159,8 @@ Plug 'mxw/vim-jsx'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'google/yapf'
+Plug 'csscomb/vim-csscomb'
+Plug 'mxw/vim-jsx'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
