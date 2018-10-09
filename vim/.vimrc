@@ -24,6 +24,9 @@ au FocusGained,BufEnter * :checktime
 set splitbelow
 set splitright
 
+" Set syntax highlighting for Jenkinsfile.
+au BufNewFile,BufRead Jenkinsfile setf groovy
+
 " Set leader to space bar.
 let mapleader=","
 
@@ -148,7 +151,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'elixir-editors/vim-elixir'

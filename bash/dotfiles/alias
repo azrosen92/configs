@@ -12,6 +12,9 @@ alias rails="bundle exec rails"
 alias rake="bundle exec rake"
 alias guard="bundle exec guard"
 
+# Node
+alias clear-node-modules="find . -name "node_modules" -exec rm -rf '{}' +"
+
 # Extras
 alias cask='brew cask'
 alias chrome='open -a Google\ Chrome'
