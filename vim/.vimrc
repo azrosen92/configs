@@ -118,8 +118,9 @@ function! Tab_Or_Complete()
       return "\<Tab>"
     endif
 endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
+
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+set dictionary="/usr/dict/words"
 
 let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
 let g:ts_auto_open_quickfix = 1

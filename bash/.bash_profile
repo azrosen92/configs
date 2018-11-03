@@ -38,4 +38,6 @@ if ssh-add -l | grep "The agent has no identities."; then
 	ssh-add -k ~/.ssh/id_rsa
 fi
 
-source $HOME/.bash_local
+if [ -f $HOME/.bash_local ]; then
+  source $HOME/.bash_local
+fi

@@ -5,13 +5,6 @@ alias sd="source deactivate"
 # Swift
 alias pod="bundle exec pod"
 
-# Ruby
-alias spring="bundle exec spring"
-alias rspec="bundle exec rspec"
-alias rails="bundle exec rails"
-alias rake="bundle exec rake"
-alias guard="bundle exec guard"
-
 # Extras
 alias cask='brew cask'
 alias chrome='open -a Google\ Chrome'
