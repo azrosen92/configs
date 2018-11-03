@@ -18,11 +18,10 @@ else
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
   . ~/.git-completion.bash
 fi
-
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
- 	# https://github.com/magicmonty/bash-git-prompt/blob/master/README.md
+if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
   GIT_PROMPT_THEME=Single_line
-  source "$(brew --prefix bash-git-prompt)/share/gitprompt.sh"
+  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 ##
@@ -31,7 +30,7 @@ fi
 export PEBBLE_PHONE="192.168.1.3"
 alias pebbleinstall="pebble build && pebble install"
 
-export NVM_DIR="/Users/AaronRosen/.nvm"
+export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 if ssh-add -l | grep "The agent has no identities."; then
