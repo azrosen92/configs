@@ -143,6 +143,9 @@ autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
 nnoremap <C-p> :FZF<CR>
 
+" ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~ 
+noremap <leader>gd :Gvdiff<CR>
+
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -173,6 +176,7 @@ Plug 'google/yapf'
 Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
 Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-fugitive'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
