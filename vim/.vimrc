@@ -151,12 +151,19 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" ~~~~~~~~~~~~~~ tagbar ~~~~~~~~~~~~~~~~~~
+nnoremap <Leader>t :TagbarToggle<CR>
+let g:tagbar_autoclose = 1
+
 call plug#begin('~/.vim/plugged')
+" ~~~~~~~~~~~~~~~ Themes
+Plug 'KKPMW/sacredforest-vim'
+Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' }
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'elixir-editors/vim-elixir'
-Plug 'KKPMW/sacredforest-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'mxw/vim-jsx'
@@ -165,10 +172,11 @@ Plug 'w0rp/ale'
 Plug 'google/yapf'
 Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
+Plug 'majutsushi/tagbar'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
-colo sacredforest
+colo Autumn
