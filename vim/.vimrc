@@ -109,6 +109,7 @@ let g:ale_linters = {
 \   'javascript': ['eslint']
 \}
 let g:ale_fix_on_save = 1
+let g:ale_linters_ignore = {'typescript': ['tslint']}
 
 " ~~~~~~ TypeScript stuff ~~~~~
 if !exists('g:ycm_semantic_triggers')
@@ -157,6 +158,7 @@ endif
 " ~~~~~~~~~~~~~~ tagbar ~~~~~~~~~~~~~~~~~~
 nnoremap <Leader>t :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
+let g:tabar_autofocus = 1
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
@@ -177,6 +179,9 @@ Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
+Plug 'gabrielelana/vim-markdown'
+Plug 'jparise/vim-graphql'
+Plug 'ludovicchabant/vim-gutentags'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
