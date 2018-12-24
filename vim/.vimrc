@@ -99,7 +99,7 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ~~~~~~ ALE stuff ~~~~~
 let g:ale_fixers = {
 \   'python': ['yapf'],
-\	  'typescript': ['prettier'],
+\	  'typescript': ['prettier', 'tslint'],
 \ 	'javascript': ['prettier'],
 \ 	'scss': ['stylelint']
 \}
@@ -110,6 +110,9 @@ let g:ale_linters = {
 \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_ignore = {'typescript': ['tslint']}
+
+" ~~~~~~~~ VIM Airline ~~~~~~~~~~
+let g:airline_theme='snow_dark'
 
 " ~~~~~~ TypeScript stuff ~~~~~
 if !exists('g:ycm_semantic_triggers')
@@ -164,7 +167,9 @@ call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
 Plug 'KKPMW/sacredforest-vim'
 Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' }
+Plug 'nightsense/snow'
 
+Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
@@ -181,11 +186,11 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jparise/vim-graphql'
-Plug 'ludovicchabant/vim-gutentags'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
-colo Autumn
+set background=dark
+colorscheme snow
