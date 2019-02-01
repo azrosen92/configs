@@ -37,6 +37,13 @@ inoremap jk <esc>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" File extensions to check for when using gf
+set suffixesadd+=.js,.jsx,.ts,.tsx,.scss,.css,.py,.json;
+" Ignore compiled files, module folders, and repo folders
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pyc,*.o,*~
+set wildignore+=*.pdf,*.psd
+set wildignore+=**/node_modules/**
+
 " Auto save everytime buffer is modified.
 function! s:save_buffer() abort
   if empty(&buftype) && !empty(bufname(''))
@@ -104,7 +111,7 @@ let g:ale_fixers = {
 \ 	'scss': ['stylelint']
 \}
 let g:ale_linters = {
-\	'python': ['pylint'],
+\	'python': ['mypy', 'pylint'],
 \ 	'typescript': ['stylelint'],
 \   'javascript': ['eslint']
 \}
@@ -126,6 +133,7 @@ let g:ycm_semantic_triggers['typescript'] = ['.']
 autocmd BufWritePost *.exs silent :!mix format %
 autocmd BufWritePost *.ex silent :!mix format %
 
+
 " ~~~~~~~~~~~~~~~ TAB autocomplete ~~~~~~~~~~~~~
 function! Tab_Or_Complete()
     if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
@@ -140,6 +148,8 @@ set dictionary="/usr/dict/words"
 
 let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
 let g:ts_auto_open_quickfix = 1
+
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
@@ -190,6 +200,7 @@ Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'Quramy/tsuquyomi'
 call plug#end()
 
 set background=dark
