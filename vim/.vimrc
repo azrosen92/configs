@@ -105,20 +105,33 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
+
 " ~~~~~~ ALE stuff ~~~~~
+" Maps tsx and jsx files to their javscript and typescript counterparts so
+" stylelint can be applied to both.
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+    au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+augroup END
 let g:ale_fixers = {
 \   'python': ['yapf'],
 \	  'typescript': ['prettier', 'tslint'],
 \ 	'javascript': ['prettier'],
 \ 	'scss': ['stylelint']
 \}
+let g:ale_linter_aliases = {
+\   'jsx': ['css', 'javascript'],
+\   'tsx': ['css', 'typescript'],
+\}
 let g:ale_linters = {
-\	'python': ['mypy', 'pylint'],
-\ 	'typescript': ['stylelint'],
-\   'javascript': ['eslint']
+\	  'python': ['mypy', 'pylint'],
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint', 'stylelint'],
+\ 	'typescript': ['tslint', 'eslint'],
+\   'tsx': ['tslint', 'eslint', 'stylelint'],
 \}
 let g:ale_fix_on_save = 1
-let g:ale_linters_ignore = {'typescript': ['tslint']}
 
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
