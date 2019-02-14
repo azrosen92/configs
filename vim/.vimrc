@@ -24,6 +24,8 @@ au FocusGained,BufEnter * :checktime
 set splitbelow
 set splitright
 
+nnoremap <Leader>s :split %<CR>
+
 " Set syntax highlighting for Jenkinsfile.
 au BufNewFile,BufRead Jenkinsfile setf groovy
 
@@ -149,7 +151,9 @@ set dictionary="/usr/dict/words"
 let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
 let g:ts_auto_open_quickfix = 1
 
+let g:tsuquyomi_disable_quickfix = 1
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript nmap <buffer> <Leader>e :TsuquyomiRenameSymbol<CR>
 
 " ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
@@ -179,7 +183,6 @@ Plug 'KKPMW/sacredforest-vim'
 Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' }
 Plug 'nightsense/snow'
 
-Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
