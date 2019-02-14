@@ -1,23 +1,30 @@
 source $VIMRUNTIME/vimrc_example.vim
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~~~~ Table of Contents ~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" [1] General stuff
+" 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~
+" ~~~~~ General stuff ~~~~~
+" ~~~~~~~~~~~~~~~~~~~~~~~~~
+filetype off                  " required
+filetype indent plugin on
+syntax on
+
 set nobackup
 set noswapfile
 set nocompatible              " be iMproved, required
 set noundofile
-filetype off                  " required
-
-" ~~~~~ General stuff ~~~~~
 set colorcolumn=120
 set tw=79
 set number
-
 " Tabs inserted as 2 spaces.
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-syntax on
-filetype indent plugin on
 set autoread
 au FocusGained,BufEnter * :checktime
 " Open new vim windows to the right and bottom
