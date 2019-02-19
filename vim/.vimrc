@@ -123,11 +123,12 @@ let g:ale_linters_ignore = {'typescript': ['tslint']}
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
 
-" ~~~~~~ TypeScript stuff ~~~~~
+" ~~~~~~ YouCompleteMe ~~~~~
 if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " ~~~~~~ Elixir stuff ~~~~~~
 

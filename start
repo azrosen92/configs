@@ -76,3 +76,10 @@ fi
 brew tap 'homebrew/bundle'
 brew tap 'caskroom/cask'
 brew update
+
+# System python causes issues with vim.
+if [ -z $(brew list | grep python@2) ]; then
+  brew install python@2
+fi
+
+vim +'PlugInstall --sync' +qa
