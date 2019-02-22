@@ -70,10 +70,20 @@ Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'w0rp/ale'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 set background=dark
 colorscheme snow
+
+
+" ~~~~~~ YouCompleteMe ~~~~~
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+nnoremap <leader>d :YcmCompleter GoTo<CR>
+
 
 " ~~~~~~~~~~~~~~ ALE ~~~~~~~~~~~~~
 let g:ale_fixers = {
