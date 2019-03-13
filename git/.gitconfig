@@ -21,7 +21,7 @@
 	lg = log --name-status --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	update = !"git co master && git pull && git co - && git rebase master"
 [push]
-	default = simple
+	default = current
 [core]
 	editor = vim
 	excludesfile = /Users/aaronrosen/.gitignore_global

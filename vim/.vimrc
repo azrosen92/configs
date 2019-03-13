@@ -110,7 +110,7 @@ let g:ale_fixers = {
 \   'python': ['yapf'],
 \	  'typescript': ['prettier', 'tslint'],
 \ 	'javascript': ['prettier'],
-\ 	'scss': ['stylelint']
+\ 	'scss': ['stylelint'],
 \}
 let g:ale_linters = {
 \	'python': ['mypy', 'pylint'],
@@ -173,8 +173,28 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" ~~~~~~~~~~~~~~ tagbar ~~~~~~~~~~~~~~~~~~
-nnoremap <Leader>t :TagbarToggle<CR>
+" ~~~~~~~~~~ Tagbar ~~~~~~~~~~~~
+" Install ctags with yarn global add git+https://github.com/Perlence/tstags.git
+let g:tagbar_type_typescript = {
+  \ 'ctagsbin' : 'tstags',
+  \ 'ctagsargs' : '-f-',
+  \ 'kinds': [
+    \ 'e:enums:0:1',
+    \ 'f:function:0:1',
+    \ 't:typealias:0:1',
+    \ 'M:Module:0:1',
+    \ 'I:import:0:1',
+    \ 'i:interface:0:1',
+    \ 'C:class:0:1',
+    \ 'm:method:0:1',
+    \ 'p:property:0:1',
+    \ 'v:variable:0:1',
+    \ 'c:const:0:1',
+  \ ],
+  \ 'sort' : 0
+\ }
+
+ nnoremap <Leader>g :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
 let g:tabar_autofocus = 1
 
@@ -190,7 +210,6 @@ Plug 'tpope/vim-sensible'
 Plug 'elixir-editors/vim-elixir'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
-Plug 'mxw/vim-jsx'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'google/yapf'
@@ -200,6 +219,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jparise/vim-graphql'
+Plug 'editorconfig/editorconfig-vim'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
