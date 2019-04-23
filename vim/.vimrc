@@ -202,7 +202,7 @@ call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
 Plug 'KKPMW/sacredforest-vim'
 Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' }
-Plug 'nightsense/snow'
+Plug 'rhysd/vim-color-spring-night'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -228,4 +228,4 @@ Plug 'Quramy/tsuquyomi'
 call plug#end()
 
 set background=dark
-colorscheme snow
+colorscheme spring-night
