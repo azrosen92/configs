@@ -40,3 +40,5 @@ fi
 if [ -f $HOME/.bash_local ]; then
   source $HOME/.bash_local
 fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

@@ -46,6 +46,12 @@ set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico,*.pyc,*.o,*~
 set wildignore+=*.pdf,*.psd
 set wildignore+=**/node_modules/**
 
+" Set ruby syntax highlighting for Vagrantfile
+augroup vagrant
+  au!
+  au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
+
 " Auto save everytime buffer is modified.
 function! s:save_buffer() abort
   if empty(&buftype) && !empty(bufname(''))
@@ -225,6 +231,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Quramy/tsuquyomi'
+" Puppet syntax highlighting, etc.
+Plug 'rodjek/vim-puppet'
 call plug#end()
 
 set background=dark

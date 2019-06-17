@@ -78,8 +78,8 @@ brew tap 'homebrew/bundle'
 brew tap 'caskroom/cask'
 brew update
 
-# Install cmake – required for YouCompleteMe
-brew install cmake
+# Install brew packages that vim plugins depend on.
+brew install cmake ctags bash-git-prompt
 
 # System python causes issues with vim.
 if [ -z $(brew list | grep python@2) ]; then
