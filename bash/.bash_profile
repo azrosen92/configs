@@ -30,8 +30,6 @@ fi
 export PEBBLE_PHONE="192.168.1.3"
 alias pebbleinstall="pebble build && pebble install"
 
-export NVM_DIR="${XDG_CONFIG_HOME/:-$HOME/.}nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 if ssh-add -l | grep "The agent has no identities."; then
 	ssh-add -k ~/.ssh/id_rsa
@@ -42,3 +40,10 @@ if [ -f $HOME/.bash_local ]; then
 fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+##
+# NVM setup (depends on NPM_TOKEN in bash_local)
+##
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
