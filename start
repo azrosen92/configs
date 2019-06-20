@@ -79,7 +79,16 @@ brew tap 'caskroom/cask'
 brew update
 
 # Install brew packages that vim plugins depend on.
-brew install cmake ctags bash-git-prompt
+brew install cmake ctags bash-git-prompt nvm ag 
+
+# Set up latest version of neovim
+brew install --head neovim
+pip2 install --upgrade neovim
+pip3 install --upgrade neovim
+mkdir -p $HOME/.config/nvim
+rm $HOME/.config/nvim/init.vim
+ln -s $DEV_CONFIGS_ROOT/vim/init.vim $HOME/.config/nvim/init.vim
+
 
 # System python causes issues with vim.
 if [ -z $(brew list | grep python@2) ]; then

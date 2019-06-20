@@ -1,4 +1,4 @@
-source $VIMRUNTIME/vimrc_example.vim
+" source $VIMRUNTIME/vimrc_example.vim
 
 set nobackup
 set noswapfile
