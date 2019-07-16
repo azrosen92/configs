@@ -23,6 +23,7 @@ au FocusGained,BufEnter * :checktime
 " Open new vim windows to the right and bottom
 set splitbelow
 set splitright
+set clipboard+=unnamedplus
 
 nnoremap <Leader>s :split %<CR>
 
@@ -32,8 +33,11 @@ au BufNewFile,BufRead Jenkinsfile setf groovy
 " Set leader to space bar.
 let mapleader=","
 
+" Automatically remove trailing whitespace
+autocmd BufWritePre * %s/\s\+$//e
+
 " Ignore gutter and line numbers when highlighting with mouse.
-set mouse=a 
+set mouse=a
 " Set jk to escape in insert mode
 inoremap jk <esc>
 
@@ -74,7 +78,7 @@ augroup save_buffer
   autocmd FocusGained,BufEnter,CursorHold * silent! checktime
 augroup end
 
-" ~~~~~~~ NerdTree ~~~~~~~ 
+" ~~~~~~~ NerdTree ~~~~~~~
 " Open NerdTree when opening vim with no file specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -130,10 +134,6 @@ let g:ale_linters_ignore = {'typescript': ['tslint']}
 let g:airline_theme='snow_dark'
 
 " ~~~~~~ YouCompleteMe ~~~~~
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
 nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " ~~~~~~ Elixir stuff ~~~~~~
@@ -221,11 +221,13 @@ Plug 'w0rp/ale'
 Plug 'google/yapf'
 Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'ludovicchabant/vim-gutentags'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
@@ -233,6 +235,8 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'Quramy/tsuquyomi'
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
+" Pug syntax highlighting
+Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 set background=dark
