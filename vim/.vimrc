@@ -121,11 +121,13 @@ let g:ale_fixers = {
 \	  'typescript': ['prettier', 'tslint'],
 \ 	'javascript': ['prettier'],
 \ 	'scss': ['stylelint'],
+\   'elixir': ['mix_format'],
 \}
 let g:ale_linters = {
 \	'python': ['mypy', 'pylint'],
 \ 	'typescript': ['stylelint'],
-\   'javascript': ['eslint']
+\   'javascript': ['eslint'],
+\   'elixir': ['mix_format'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_ignore = {'typescript': ['tslint']}
@@ -139,8 +141,8 @@ nnoremap <leader>d :YcmCompleter GoTo<CR>
 " ~~~~~~ Elixir stuff ~~~~~~
 
 " Code formatting
-autocmd BufWritePost *.exs silent :!mix format %
-autocmd BufWritePost *.ex silent :!mix format %
+"autocmd BufWritePost *.exs silent :!mix format %
+"autocmd BufWritePost *.ex silent :!mix format %
 
 
 " ~~~~~~~~~~~~~~~ TAB autocomplete ~~~~~~~~~~~~~
