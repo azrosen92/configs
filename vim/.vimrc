@@ -208,9 +208,10 @@ let g:tabar_autofocus = 1
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
-Plug 'KKPMW/sacredforest-vim'
-Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' }
-Plug 'rhysd/vim-color-spring-night'
+Plug 'KKPMW/sacredforest-vim' " Winter
+Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
+Plug 'rhysd/vim-color-spring-night' " Spring
+Plug 'NLKNguyen/papercolor-theme' "Summer
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -243,4 +244,4 @@ Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 set background=dark
-colorscheme spring-night
+colorscheme PaperColor
