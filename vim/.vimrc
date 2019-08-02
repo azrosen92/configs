@@ -128,6 +128,7 @@ let g:ale_linters = {
 \ 	'typescript': ['eslint', 'stylelint'],
 \   'javascript': ['eslint'],
 \   'elixir': ['mix_format'],
+\   'ruby': ['rubocop']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_linters_ignore = {'typescript': ['tslint']}
