@@ -118,14 +118,14 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ~~~~~~ ALE stuff ~~~~~
 let g:ale_fixers = {
 \   'python': ['yapf'],
-\	  'typescript': ['prettier', 'tslint'],
-\ 	'javascript': ['prettier'],
+\	  'typescript': ['prettier', 'eslint'],
+\ 	'javascript': ['eslint'],
 \ 	'scss': ['stylelint'],
 \   'elixir': ['mix_format'],
 \}
 let g:ale_linters = {
 \	'python': ['mypy', 'pylint'],
-\ 	'typescript': ['stylelint'],
+\ 	'typescript': ['eslint', 'stylelint'],
 \   'javascript': ['eslint'],
 \   'elixir': ['mix_format'],
 \}
@@ -170,7 +170,7 @@ autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
 nnoremap <C-p> :FZF<CR>
 
-" ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~ 
+" ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
