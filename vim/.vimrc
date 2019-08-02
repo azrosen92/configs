@@ -131,7 +131,6 @@ let g:ale_linters = {
 \   'ruby': ['rubocop']
 \}
 let g:ale_fix_on_save = 1
-let g:ale_linters_ignore = {'typescript': ['tslint']}
 
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
@@ -236,6 +235,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
 " Pug syntax highlighting
