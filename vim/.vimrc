@@ -157,7 +157,6 @@ endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 set dictionary="/usr/dict/words"
 
-let g:ts_path_to_plugin = '~/.vim/plugged/vim-typescript'
 let g:ts_auto_open_quickfix = 1
 
 let g:tsuquyomi_disable_quickfix = 1
