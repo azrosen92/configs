@@ -128,7 +128,8 @@ let g:ale_linters = {
 \ 	'typescript': ['eslint', 'stylelint'],
 \   'javascript': ['eslint'],
 \   'elixir': ['mix_format'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
+\   'yml': ['ymllint']
 \}
 let g:ale_fix_on_save = 1
 
@@ -207,7 +208,7 @@ let g:tabar_autofocus = 1
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
-Plug 'KKPMW/sacredforest-vim' " Winter
+Plug 'cocopon/iceberg.vim' " Winter
 Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
 Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
@@ -243,4 +244,4 @@ Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 set background=dark
-colorscheme PaperColor
+colorscheme Autumn

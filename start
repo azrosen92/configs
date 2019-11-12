@@ -79,7 +79,7 @@ brew tap 'caskroom/cask'
 brew update
 
 # Install brew packages that vim plugins depend on.
-brew install cmake bash-git-prompt nvm ag ctags-exuberant gpg
+brew install cmake bash-git-prompt nvm ag ctags-exuberant gpg yamllint
 
 # Set up latest version of neovim
 brew install --head neovim
