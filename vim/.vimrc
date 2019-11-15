@@ -129,7 +129,6 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'elixir': ['mix_format'],
 \   'ruby': ['rubocop'],
-\   'yml': ['ymllint']
 \}
 let g:ale_fix_on_save = 1
 
