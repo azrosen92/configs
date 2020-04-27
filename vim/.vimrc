@@ -52,9 +52,12 @@ set wildignore+=*.pdf,*.psd
 set wildignore+=**/node_modules/**
 
 " Set ruby syntax highlighting for Vagrantfile
-augroup vagrant
+augroup SyntaxSettings
   au!
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
+  au BufRead,BufNewFile Fastfile set filetype=ruby
+  au BufRead,BufNewFile Podfile set filetype=ruby
+  au Bufread,BufNewFile *.tsx set filetype=typescript
 augroup END
 
 " Make sure neovim recognizes tsx files as typescript
