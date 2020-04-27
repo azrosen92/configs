@@ -1,6 +1,7 @@
 " source $VIMRUNTIME/vimrc_example.vim
 
 set nobackup
+set nowritebackup
 set noswapfile
 set nocompatible              " be iMproved, required
 set noundofile
@@ -54,6 +55,12 @@ set wildignore+=**/node_modules/**
 augroup vagrant
   au!
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
+augroup END
+
+" Make sure neovim recognizes tsx files as typescript
+augroup SyntaxSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 augroup END
 
 " Auto save everytime buffer is modified.
@@ -115,53 +122,14 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
-" ~~~~~~ ALE stuff ~~~~~
-let g:ale_fixers = {
-\   'python': ['yapf'],
-\	  'typescript': ['prettier', 'eslint'],
-\ 	'javascript': ['eslint'],
-\ 	'scss': ['stylelint'],
-\   'elixir': ['mix_format'],
-\}
-let g:ale_linters = {
-\	'python': ['mypy', 'pylint'],
-\ 	'typescript': ['eslint', 'stylelint'],
-\   'javascript': ['eslint'],
-\   'elixir': ['mix_format'],
-\   'ruby': ['rubocop'],
-\}
-let g:ale_fix_on_save = 1
-
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
-
-" ~~~~~~ YouCompleteMe ~~~~~
-nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " ~~~~~~ Elixir stuff ~~~~~~
 
 " Code formatting
 "autocmd BufWritePost *.exs silent :!mix format %
 "autocmd BufWritePost *.ex silent :!mix format %
-
-
-" ~~~~~~~~~~~~~~~ TAB autocomplete ~~~~~~~~~~~~~
-function! Tab_Or_Complete()
-    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-      return "\<C-N>"
-    else
-      return "\<Tab>"
-    endif
-endfunction
-
-inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-set dictionary="/usr/dict/words"
-
-let g:ts_auto_open_quickfix = 1
-
-let g:tsuquyomi_disable_quickfix = 1
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
-autocmd FileType typescript nmap <buffer> <Leader>e :TsuquyomiRenameSymbol<CR>
 
 " ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
@@ -171,6 +139,58 @@ nnoremap <C-p> :FZF<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
+
+" ~~~~~~~~~~~~~~ Coc.vim ~~~~~~~~~~~~~~
+" https://github.com/neoclide/coc.nvim#example-vim-configuration
+" Give more space for displaying messages.
+set cmdheight=2
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
@@ -212,6 +232,9 @@ Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
 Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
+" ~~~~~~~~~~~~~~~ LSP Client
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
@@ -219,7 +242,6 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'
 Plug 'google/yapf'
 Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
@@ -229,12 +251,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ludovicchabant/vim-gutentags'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
