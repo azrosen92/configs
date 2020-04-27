@@ -97,6 +97,3 @@ fi
 
 vim +'PlugInstall --sync' +qa
 
-cd ~/.vim/plugged/YouCompleteMe/
-python install.py
-cd -
