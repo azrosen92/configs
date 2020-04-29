@@ -197,7 +197,6 @@ nmap <leader>rn <Plug>(coc-rename)
 " Open references in split window
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['javascript', 'typescript']
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
