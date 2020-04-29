@@ -1,7 +1,6 @@
 " source $VIMRUNTIME/vimrc_example.vim
 
 set nobackup
-set nowritebackup
 set noswapfile
 set nocompatible              " be iMproved, required
 set noundofile
@@ -58,12 +57,6 @@ augroup SyntaxSettings
   au BufRead,BufNewFile Fastfile set filetype=ruby
   au BufRead,BufNewFile Podfile set filetype=ruby
   au Bufread,BufNewFile *.tsx set filetype=typescript
-augroup END
-
-" Make sure neovim recognizes tsx files as typescript
-augroup SyntaxSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 augroup END
 
 " Auto save everytime buffer is modified.
@@ -125,14 +118,53 @@ call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
 call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 
+" ~~~~~~ ALE stuff ~~~~~
+let g:ale_fixers = {
+\   'python': ['yapf'],
+\	  'typescript': ['prettier', 'eslint'],
+\ 	'javascript': ['eslint'],
+\ 	'scss': ['stylelint'],
+\   'elixir': ['mix_format'],
+\}
+let g:ale_linters = {
+\	'python': ['mypy', 'pylint'],
+\ 	'typescript': ['eslint', 'stylelint'],
+\   'javascript': ['eslint'],
+\   'elixir': ['mix_format'],
+\   'ruby': ['rubocop'],
+\}
+let g:ale_fix_on_save = 1
+
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
+
+" ~~~~~~ YouCompleteMe ~~~~~
+nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " ~~~~~~ Elixir stuff ~~~~~~
 
 " Code formatting
 "autocmd BufWritePost *.exs silent :!mix format %
 "autocmd BufWritePost *.ex silent :!mix format %
+
+
+" ~~~~~~~~~~~~~~~ TAB autocomplete ~~~~~~~~~~~~~
+function! Tab_Or_Complete()
+    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+      return "\<C-N>"
+    else
+      return "\<Tab>"
+    endif
+endfunction
+
+inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+set dictionary="/usr/dict/words"
+
+let g:ts_auto_open_quickfix = 1
+
+let g:tsuquyomi_disable_quickfix = 1
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript nmap <buffer> <Leader>e :TsuquyomiRenameSymbol<CR>
 
 " ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
@@ -238,9 +270,6 @@ Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
 Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
-" ~~~~~~~~~~~~~~~ LSP Client
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
@@ -248,6 +277,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
+Plug 'w0rp/ale'
 Plug 'google/yapf'
 Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
@@ -257,9 +287,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'gabrielelana/vim-markdown'
 Plug 'jparise/vim-graphql'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'ludovicchabant/vim-gutentags'
 " TypeScript stuff.
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
