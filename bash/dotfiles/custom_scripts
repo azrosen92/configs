@@ -1,5 +1,13 @@
 #!/bin/bash
 
+uuid() {
+  if [[ -z "$1" ]]; then
+    echo "Requires on argument, the number of bytes you want your key to be"
+    return
+  fi
+  date +%s | sha256sum | base64 | head -c $1 ; echo
+}
+
 archive() {
   if [ -z $1 ]; then
 	echo "must provide an argument"
