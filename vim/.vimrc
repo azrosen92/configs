@@ -52,11 +52,11 @@ set wildignore+=**/node_modules/**
 
 " Set ruby syntax highlighting for Vagrantfile
 augroup SyntaxSettings
-  au!
+  autocmd!
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
   au BufRead,BufNewFile Fastfile set filetype=ruby
   au BufRead,BufNewFile Podfile set filetype=ruby
-  au Bufread,BufNewFile *.tsx set filetype=typescript
+  au Bufread,BufNewFile *.tsx set filetype=typescript.tsx
 augroup END
 
 " Auto save everytime buffer is modified.
@@ -121,15 +121,10 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 " ~~~~~~ ALE stuff ~~~~~
 let g:ale_fixers = {
 \   'python': ['yapf'],
-\	  'typescript': ['prettier', 'eslint'],
-\ 	'javascript': ['eslint'],
-\ 	'scss': ['stylelint'],
 \   'elixir': ['mix_format'],
 \}
 let g:ale_linters = {
-\	'python': ['mypy', 'pylint'],
-\ 	'typescript': ['eslint', 'stylelint'],
-\   'javascript': ['eslint'],
+\	  'python': ['mypy', 'pylint'],
 \   'elixir': ['mix_format'],
 \   'ruby': ['rubocop'],
 \}
@@ -137,9 +132,6 @@ let g:ale_fix_on_save = 1
 
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
-
-" ~~~~~~ YouCompleteMe ~~~~~
-nnoremap <leader>d :YcmCompleter GoTo<CR>
 
 " ~~~~~~ Elixir stuff ~~~~~~
 
@@ -160,12 +152,6 @@ endfunction
 inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 set dictionary="/usr/dict/words"
 
-let g:ts_auto_open_quickfix = 1
-
-let g:tsuquyomi_disable_quickfix = 1
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
-autocmd FileType typescript nmap <buffer> <Leader>e :TsuquyomiRenameSymbol<CR>
-
 " ~~~~~~~~~~~~~~ CSScomb ~~~~~~~~~~~~~~~~~~~~
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
@@ -174,6 +160,7 @@ nnoremap <C-p> :FZF<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
+noremap <leader>gh :Gbrowse<CR>
 
 " ~~~~~~~~~~~~~~ Coc.vim ~~~~~~~~~~~~~~
 " https://github.com/neoclide/coc.nvim#example-vim-configuration
@@ -238,31 +225,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" ~~~~~~~~~~ Tagbar ~~~~~~~~~~~~
-" Install ctags with yarn global add git+https://github.com/Perlence/tstags.git
-let g:tagbar_type_typescript = {
-  \ 'ctagsbin' : 'tstags',
-  \ 'ctagsargs' : '-f-',
-  \ 'kinds': [
-    \ 'e:enums:0:1',
-    \ 'f:function:0:1',
-    \ 't:typealias:0:1',
-    \ 'M:Module:0:1',
-    \ 'I:import:0:1',
-    \ 'i:interface:0:1',
-    \ 'C:class:0:1',
-    \ 'm:method:0:1',
-    \ 'p:property:0:1',
-    \ 'v:variable:0:1',
-    \ 'c:const:0:1',
-  \ ],
-  \ 'sort' : 0
-\ }
-
- nnoremap <Leader>g :TagbarToggle<CR>
-let g:tagbar_autoclose = 1
-let g:tabar_autofocus = 1
-
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
 Plug 'cocopon/iceberg.vim' " Winter
@@ -270,30 +232,27 @@ Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
 Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
+" ~~~~~~~~~~~~~~~ LSP Client
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'csscomb/vim-csscomb'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'gabrielelana/vim-markdown'
+Plug 'google/yapf'
+Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-sensible'
-Plug 'elixir-editors/vim-elixir'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-surround'
+Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
-Plug 'w0rp/ale'
-Plug 'google/yapf'
-Plug 'csscomb/vim-csscomb'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
-Plug 'gabrielelana/vim-markdown'
-Plug 'jparise/vim-graphql'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'ludovicchabant/vim-gutentags'
-" TypeScript stuff.
-Plug 'leafgarland/typescript-vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'Valloric/YouCompleteMe'
-Plug 'Quramy/tsuquyomi'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'w0rp/ale'
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
 " Pug syntax highlighting
