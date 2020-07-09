@@ -21,3 +21,7 @@ archive() {
   echo "moved $1 to .archive directory"
   echo "to undo run the command: ~$ mv $HOME/code/.archive/$1 $archived"
 }
+
+timestamp() {
+  echo $(date +%Y%m%d-%H%M)
+}
