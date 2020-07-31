@@ -217,6 +217,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+"
+" Open references in split window
+let g:coc_user_config = {}
+let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript']
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
@@ -236,9 +241,11 @@ Plug 'NLKNguyen/papercolor-theme' "Summer
 " ~~~~~~~~~~~~~~~ LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" ~~~~~~~~~~~~~~~ Language servers
+Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
 Plug 'csscomb/vim-csscomb'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-editors/vim-elixir'
 Plug 'gabrielelana/vim-markdown'
 Plug 'google/yapf'
 Plug 'jparise/vim-graphql'
@@ -261,4 +268,4 @@ Plug 'digitaltoad/vim-pug'
 call plug#end()
 
 set background=dark
-colorscheme Autumn
+colorscheme papercolor
