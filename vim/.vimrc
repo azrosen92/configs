@@ -162,6 +162,10 @@ nnoremap <C-p> :FZF<CR>
 noremap <leader>gd :Gvdiff<CR>
 noremap <leader>gh :Gbrowse<CR>
 
+" ~~~~~~~~~~~~~ JSON stuff ~~~~~~~~~~
+" Format json blob
+noremap <leader>jf :%!jq .<CR>
+
 " ~~~~~~~~~~~~~~ Coc.vim ~~~~~~~~~~~~~~
 " https://github.com/neoclide/coc.nvim#example-vim-configuration
 " Give more space for displaying messages.
@@ -213,9 +217,6 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" Open references in split window
-let g:coc_user_config = {}
-let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
@@ -245,7 +246,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
