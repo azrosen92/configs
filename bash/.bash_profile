@@ -39,11 +39,17 @@ if [ -f $HOME/.bash_local ]; then
   source $HOME/.bash_local
 fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 ##
 # NVM setup (depends on NPM_TOKEN in bash_local)
 ##
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+##
+# Setup pyenv, if available.
+##
+if command -v pyenv 1>/dev/null 2>&1; then
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
