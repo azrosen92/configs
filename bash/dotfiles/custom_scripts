@@ -1,5 +1,14 @@
 #!/bin/bash
 
+clear_node_deps() {
+  for dir in ./*; do
+    if [[ -d "$dir/node_modules" ]]; then
+      echo "Removing contents of $dir/node_modules"
+      rm -rf $dir/node_modules/
+    fi
+  done
+}
+
 uuid() {
   if [[ -z "$1" ]]; then
     echo "Requires on argument, the number of bytes you want your key to be"
