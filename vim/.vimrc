@@ -262,6 +262,8 @@ Plug 'w0rp/ale'
 Plug 'rodjek/vim-puppet'
 " Pug syntax highlighting
 Plug 'digitaltoad/vim-pug'
+" Elixir syntax highlighting
+Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 set background=dark
