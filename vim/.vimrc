@@ -241,9 +241,6 @@ Plug 'NLKNguyen/papercolor-theme' "Summer
 " ~~~~~~~~~~~~~~~ LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" ~~~~~~~~~~~~~~~ Language servers
-Plug 'amiralies/coc-elixir', {'do': 'yarn install && yarn prepack'}
-
 Plug 'csscomb/vim-csscomb'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'gabrielelana/vim-markdown'
