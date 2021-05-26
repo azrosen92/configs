@@ -1,3 +1,5 @@
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 source $HOME/.dotfiles/alias
 source $HOME/.dotfiles/env_vars
 source $HOME/.dotfiles/golang
@@ -18,10 +20,12 @@ else
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
   . ~/.git-completion.bash
 fi
-if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  GIT_PROMPT_ONLY_IN_REPO=1
   GIT_PROMPT_THEME=Single_line
-  source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
 ##

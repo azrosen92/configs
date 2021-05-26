@@ -221,7 +221,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Open references in split window
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript']
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json']
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
@@ -239,31 +239,38 @@ Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
 " ~~~~~~~~~~~~~~~ LSP Client
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'csscomb/vim-csscomb'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'gabrielelana/vim-markdown'
-Plug 'google/yapf'
-Plug 'jparise/vim-graphql'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
-Plug 'mileszs/ack.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+" ~~~~~~~~~~~~~~~ Syntax highlighting
 " Puppet syntax highlighting, etc.
 Plug 'rodjek/vim-puppet'
 " Pug syntax highlighting
 Plug 'digitaltoad/vim-pug'
 " Elixir syntax highlighting
 Plug 'elixir-editors/vim-elixir'
+Plug 'gabrielelana/vim-markdown'
+Plug 'pangloss/vim-javascript'
+
+" ~~~~~~~~~~~~~~~ Useful tools
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+Plug 'majutsushi/tagbar'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mileszs/ack.vim'
+Plug 'thoughtbot/vim-rspec'
+
+" ~~~~~~~~~~~~~~~ Other
+Plug 'csscomb/vim-csscomb'
+Plug 'google/yapf'
+Plug 'jparise/vim-graphql'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'w0rp/ale'
 call plug#end()
 
 set background=dark
