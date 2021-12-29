@@ -26,6 +26,7 @@ set splitright
 set clipboard+=unnamedplus
 
 nnoremap <Leader>s :split %<CR>
+vnoremap <Leader>r "hy:%s/<C-r>h//g<left><left>
 
 " Set syntax highlighting for Jenkinsfile.
 au BufNewFile,BufRead Jenkinsfile setf groovy
