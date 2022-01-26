@@ -161,7 +161,7 @@ nnoremap <C-p> :FZF<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
-noremap <leader>gh :Gbrowse<CR>
+noremap <leader>gh :GBrowse<CR>
 
 " ~~~~~~~~~~~~~ JSON stuff ~~~~~~~~~~
 " Format json blob
