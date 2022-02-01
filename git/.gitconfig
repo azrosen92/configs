@@ -3,6 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = Aaron Rosen
 	email = azrosen92@gmail.com
+	username = azrosen92
 [alias]
 	co = checkout
 	br = branch

@@ -28,8 +28,10 @@ set clipboard+=unnamedplus
 nnoremap <Leader>s :split %<CR>
 vnoremap <Leader>r "hy:%s/<C-r>h//g<left><left>
 
-" Set syntax highlighting for Jenkinsfile.
+" Set syntax highlighting for all groovy files – (Jenkins, gradle, etc)
 au BufNewFile,BufRead Jenkinsfile setf groovy
+au BufNewFile,BufRead *.gradle set filetype=groovy
+au BufNewFile,BufRead *.gradle.kts set filetype=groovy
 
 " Set leader to space bar.
 let mapleader=","
@@ -240,7 +242,7 @@ Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
 " ~~~~~~~~~~~~~~~ LSP Client
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ~~~~~~~~~~~~~~~ Syntax highlighting
 " Puppet syntax highlighting, etc.
@@ -272,6 +274,14 @@ Plug 'google/yapf'
 Plug 'jparise/vim-graphql'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'w0rp/ale'
+
+" SYNTAX HIGHLIGHTING
+Plug 'rodjek/vim-puppet'
+Plug 'digitaltoad/vim-pug'
+Plug 'elixir-editors/vim-elixir'
+Plug 'jasdel/vim-smithy'
+Plug 'ekalinin/Dockerfile.vim'
+" Plug 'tfnico/vim-gradle'
 call plug#end()
 
 set background=dark
