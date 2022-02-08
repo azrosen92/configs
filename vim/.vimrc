@@ -256,6 +256,8 @@ Plug 'digitaltoad/vim-pug'
 Plug 'elixir-editors/vim-elixir'
 Plug 'gabrielelana/vim-markdown'
 Plug 'pangloss/vim-javascript'
+" MJML Synta Highlighting
+Plug 'amadeus/vim-mjml'
 
 " ~~~~~~~~~~~~~~~ Useful tools
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -270,6 +272,7 @@ Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mileszs/ack.vim'
 Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-dadbod'
 
 " ~~~~~~~~~~~~~~~ Other
 Plug 'csscomb/vim-csscomb'
