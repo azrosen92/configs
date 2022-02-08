@@ -242,6 +242,8 @@ Plug 'YorickPeterse/Autumn.vim', { 'as': 'Autumn-vim' } " Fall
 Plug 'rhysd/vim-color-spring-night' " Spring
 Plug 'NLKNguyen/papercolor-theme' "Summer
 
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+
 " ~~~~~~~~~~~~~~~ LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -285,5 +287,4 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'tfnico/vim-gradle'
 call plug#end()
 
-set background=dark
-colorscheme papercolor
+colorscheme onehalfdark
