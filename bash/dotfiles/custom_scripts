@@ -42,3 +42,16 @@ archive() {
 timestamp() {
   echo $(date +%Y%m%d-%H%M)
 }
+
+set_main_branch() {
+  if [ -d .git ]; then
+    export GIT_MAIN=$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')
+  fi
+}
+
+cd() {
+  builtin cd "$@"
+
+  set_main_branch
+}
+
