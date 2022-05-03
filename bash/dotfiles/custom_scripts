@@ -45,7 +45,7 @@ timestamp() {
 
 set_main_branch() {
   if [ -d .git ]; then
-    export GIT_MAIN=$(git remote show origin | grep "HEAD branch" | sed 's/.*: //')
+    export GIT_MAIN=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
   fi
 }
 
