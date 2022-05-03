@@ -125,7 +125,6 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 let g:ale_fixers = {
 \   'python': ['yapf'],
 \   'elixir': ['mix_format'],
-\   'ruby': ['rubocop'],
 \}
 let g:ale_linters = {
 \	  'python': ['mypy', 'pylint'],
@@ -279,7 +278,7 @@ Plug 'csscomb/vim-csscomb'
 Plug 'google/yapf'
 Plug 'jparise/vim-graphql'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " SYNTAX HIGHLIGHTING
 Plug 'rodjek/vim-puppet'
