@@ -42,3 +42,16 @@ archive() {
 timestamp() {
   echo $(date +%Y%m%d-%H%M)
 }
+
+set_main_branch() {
+  if [ -d .git ]; then
+    export GIT_MAIN=$(git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4)
+  fi
+}
+
+cd() {
+  builtin cd "$@"
+
+  set_main_branch
+}
+
