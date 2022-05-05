@@ -21,6 +21,7 @@
 	rbs = rebase --skip
 	lg = log --name-status --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	update = !"git co $GIT_MAIN && git pull && git co - && git rebase $GIT_MAIN"
+  com = !"git co $GIT_MAIN"
 [push]
 	default = current
 [core]
