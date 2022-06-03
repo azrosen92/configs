@@ -25,7 +25,7 @@
 [push]
 	default = current
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = /Users/aaronrosen/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f

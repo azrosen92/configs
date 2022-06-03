@@ -274,7 +274,6 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dadbod'
 
 " ~~~~~~~~~~~~~~~ Other
-Plug 'csscomb/vim-csscomb'
 Plug 'google/yapf'
 Plug 'jparise/vim-graphql'
 Plug 'MaxMEllon/vim-jsx-pretty'
