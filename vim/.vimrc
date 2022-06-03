@@ -25,6 +25,9 @@ set splitbelow
 set splitright
 set clipboard+=unnamedplus
 
+" Load bash aliases into vim session
+set shellcmdflag=-ic
+
 nnoremap <Leader>s :split %<CR>
 vnoremap <Leader>r "hy:%s/<C-r>h//g<left><left>
 
@@ -234,6 +237,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" vim-test configuration
+nmap <silent> <leader>t :TestNearest<CR>
+let test#strategy = "neovim"
+let test#ruby#rspec#executable = "rspec"
+
+let $BASH_ENV = ".aliases"
+
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
 Plug 'cocopon/iceberg.vim' " Winter
@@ -270,7 +280,7 @@ Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mileszs/ack.vim'
-Plug 'thoughtbot/vim-rspec'
+Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dadbod'
 
 " ~~~~~~~~~~~~~~~ Other
