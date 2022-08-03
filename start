@@ -20,12 +20,12 @@ echo "Linking vimrc"
 rm $HOME/.vimrc
 ln -s $DEV_CONFIGS_ROOT/vim/.vimrc $HOME/
 
-# Link bash_profilec
-echo "Linking bash_profilec"
-rm $HOME/.bash_profilec
-ln -s $DEV_CONFIGS_ROOT/bash/.bash_profilec $HOME/.bash_profilec
+# Link bash_profile
+echo "Linking bash_profile"
+rm $HOME/.bash_profile
+ln -s $DEV_CONFIGS_ROOT/bash/.bash_profile $HOME/.bash_profile
 
-# Link bash_profilec dependencies
+# Link bash_profile dependencies
 rm $HOME/.dotfiles/*
 mkdir $HOME/.dotfiles/
 ln -s $DEV_CONFIGS_ROOT/bash/dotfiles/* $HOME/.dotfiles/
@@ -75,7 +75,7 @@ if brew list | grep -Fq brew-cask; then
 	brew uninstall --force brew-cask
 fi
 brew tap 'homebrew/bundle'
-brew tap 'caskroom/cask'
+brew tap 'homebrew/cask'
 brew update
 
 # Install brew packages that vim plugins depend on.

@@ -285,7 +285,8 @@ Plug 'digitaltoad/vim-pug'
 Plug 'elixir-editors/vim-elixir'
 Plug 'jasdel/vim-smithy'
 Plug 'ekalinin/Dockerfile.vim'
-" Plug 'tfnico/vim-gradle'
+Plug 'tfnico/vim-gradle'
+Plug 'slim-template/vim-slim'
 call plug#end()
 
 colorscheme onehalfdark

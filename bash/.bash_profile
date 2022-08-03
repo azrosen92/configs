@@ -6,9 +6,6 @@ source $HOME/.dotfiles/golang
 source $HOME/.dotfiles/path
 source $HOME/.dotfiles/custom_scripts
 
-# Simlink everything in $HOME/Documents/code/bash to /usr/sbin.
-ln -s -f $DEV_DIRECTORY/bash/* /usr/local/sbin
-
 export VISUAL=vim
 export EDITOR=$VISUAL
 
@@ -20,6 +17,8 @@ else
   curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
   . ~/.git-completion.bash
 fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
