@@ -1,5 +1,3 @@
-" source $VIMRUNTIME/vimrc_example.vim
-
 set nobackup
 set noswapfile
 set nocompatible              " be iMproved, required
@@ -25,16 +23,25 @@ set splitbelow
 set splitright
 set clipboard+=unnamedplus
 
+" Set leader to comma
+let mapleader=","
+
+""""""""""""""""""
+" Custom mappings
+""""""""""""""""""
 nnoremap <Leader>s :split %<CR>
 vnoremap <Leader>r "hy:%s/<C-r>h//g<left><left>
+" Converts all strings to symbols, with confirmation
+nnoremap <Leader>rs "hy:%s/"\(\w\+\)"/:\1/gc"
+
+" Change vertical split to horizontal and vise versa
+nnoremap <Leader>th <C-w>t<C-w>H
+nnoremap <Leader>tk <C-w>t<C-w>K
 
 " Set syntax highlighting for all groovy files – (Jenkins, gradle, etc)
 au BufNewFile,BufRead Jenkinsfile setf groovy
 au BufNewFile,BufRead *.gradle set filetype=groovy
 au BufNewFile,BufRead *.gradle.kts set filetype=groovy
-
-" Set leader to space bar.
-let mapleader=","
 
 " Automatically remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
@@ -130,8 +137,10 @@ let g:ale_linters = {
 \	  'python': ['mypy', 'pylint'],
 \   'elixir': ['mix_format'],
 \   'ruby': ['rubocop'],
+\   'slim': ['slimlint'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " ~~~~~~~~ VIM Airline ~~~~~~~~~~
 let g:airline_theme='snow_dark'
@@ -230,6 +239,7 @@ nmap <leader>rn <Plug>(coc-rename)
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json']
+let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
 
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
