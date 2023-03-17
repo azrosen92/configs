@@ -241,6 +241,11 @@ let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json']
 let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
 
+" Trigger solargraph to format ruby code
+let g:coc_user_config['solargraph.diagnostics'] = 'true'
+let g:coc_user_config['solargraph.autoformat'] = 'true'
+let g:coc_user_config['solargraph.formatting'] = 'true'
+
 " ~~~~~~~~~~~~~~ VIM Plugs ~~~~~~~~~~~~~~~~~~
 " Automatically installs vim-plugs if not installed on system
 if empty(glob('~/.vim/autoload/plug.vim'))
