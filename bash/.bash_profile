@@ -18,8 +18,6 @@ else
   . ~/.git-completion.bash
 fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
   GIT_PROMPT_ONLY_IN_REPO=1
@@ -59,3 +57,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
   # setup path for pipenv
   export PATH="$(python -m site --user-base)/bin:$PATH"
 fi
+
+
+##
+# Set up asdf for version management
+##
+. "/usr/local/opt/asdf/libexec/asdf.sh"
+. "/usr/local/opt/asdf/etc/bash_completion.d/asdf.bash"
