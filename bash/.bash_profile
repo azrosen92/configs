@@ -1,21 +1,18 @@
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 source $HOME/.dotfiles/alias
 source $HOME/.dotfiles/env_vars
-source $HOME/.dotfiles/golang
 source $HOME/.dotfiles/path
 source $HOME/.dotfiles/custom_scripts
 
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if [ ! -d ~/.zsh ]; then
+  # Create the folder structure
+  mkdir -p ~/.zsh
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-else
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-  . ~/.git-completion.bash
+  # Download the scripts
+  curl -o ~/.zsh/git-completion.bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+  curl -o ~/.zsh/_git https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 fi
 
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
@@ -33,7 +30,7 @@ alias pebbleinstall="pebble build && pebble install"
 
 
 if ssh-add -l | grep "The agent has no identities."; then
-	ssh-add -k ~/.ssh/id_rsa
+	ssh-add -k ~/.ssh/id_ed25519
 fi
 
 if [ -f $HOME/.bash_local ]; then
@@ -62,5 +59,5 @@ fi
 ##
 # Set up asdf for version management
 ##
-. "/usr/local/opt/asdf/libexec/asdf.sh"
-. "/usr/local/opt/asdf/etc/bash_completion.d/asdf.bash"
+. "$(brew --prefix asdf)/libexec/asdf.sh"
+. "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"

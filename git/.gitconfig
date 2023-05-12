@@ -27,7 +27,7 @@
 	default = current
 [core]
 	editor = nvim
-	excludesfile = /Users/aaronrosen/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
