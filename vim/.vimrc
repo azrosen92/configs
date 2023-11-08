@@ -29,6 +29,7 @@ let mapleader=","
 """"""""""""""""""
 " Custom mappings
 """"""""""""""""""
+vnoremap <leader>p "_dP
 nnoremap <Leader>s :split %<CR>
 vnoremap <Leader>r "hy:%s/<C-r>h//g<left><left>
 " Converts all strings to symbols, with confirmation
@@ -66,6 +67,7 @@ augroup SyntaxSettings
   au BufRead,BufNewFile Vagrantfile set filetype=ruby
   au BufRead,BufNewFile Fastfile set filetype=ruby
   au BufRead,BufNewFile Podfile set filetype=ruby
+  au BufRead,BufNewFile *.rabl set filetype=ruby
   au Bufread,BufNewFile *.tsx set filetype=typescript.tsx
 augroup END
 
@@ -132,6 +134,7 @@ call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
 let g:ale_fixers = {
 \   'python': ['yapf'],
 \   'elixir': ['mix_format'],
+\   'ruby': ['rubocop'],
 \}
 let g:ale_linters = {
 \	  'python': ['mypy', 'pylint'],
@@ -231,7 +234,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Open references in split window
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json']
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json', 'ruby']
 let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
 
 " Trigger solargraph to format ruby code
