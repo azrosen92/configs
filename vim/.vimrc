@@ -52,8 +52,6 @@ set mouse=a
 " Set jk to escape in insert mode
 inoremap jk <esc>
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 " File extensions to check for when using gf
 set suffixesadd+=.js,.jsx,.ts,.tsx,.scss,.css,.py,.json;
 " Ignore compiled files, module folders, and repo folders
@@ -234,7 +232,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " Open references in split window
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
-let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json', 'ruby']
+let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json', 'ruby', 'geojson']
 let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
 
 " Trigger solargraph to format ruby code
@@ -249,6 +247,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" CtrlSF https://github.com/dyng/ctrlsf.vim
+nmap <leader>F <Plug>CtrlSFPrompt
+vmap <leader>F <Plug>CtrlSFVwordExec
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
@@ -277,6 +282,7 @@ Plug 'amadeus/vim-mjml'
 " ~~~~~~~~~~~~~~~ Useful tools
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'dyng/ctrlsf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -285,7 +291,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'mileszs/ack.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-dadbod'
 
