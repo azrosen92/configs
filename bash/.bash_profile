@@ -61,3 +61,8 @@ fi
 ##
 . "$(brew --prefix asdf)/libexec/asdf.sh"
 . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+
+##
+# Completion for git machete
+eval "$(git machete completion zsh)"
+

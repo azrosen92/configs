@@ -23,6 +23,7 @@
 	update = !"git co $GIT_MAIN && git pull && git co - && git rebase $GIT_MAIN"
   com = !"git co $GIT_MAIN"
   db = !"git branch --merged | grep -vE 'main|master|\\*' | xargs -n 1 git branch -D"
+  rball = machete traverse --fetch --start-from=first-root
 [push]
 	default = current
 [core]
@@ -35,3 +36,5 @@
 	required = true
 [pull]
 	rebase = true
+[credential]
+	helper = osxkeychain
