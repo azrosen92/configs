@@ -66,3 +66,4 @@ fi
 # Completion for git machete
 eval "$(git machete completion zsh)"
 
+source ~/.gusto/init.sh

@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Aaron Rosen
-	email = azrosen92@gmail.com
+	email = aaron.rosen@gusto.com
 	username = azrosen92
 [alias]
 	co = checkout
@@ -22,13 +22,14 @@
 	lg = log --name-status --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	update = !"git co $GIT_MAIN && git pull && git co - && git rebase $GIT_MAIN"
   com = !"git co $GIT_MAIN"
-  db = !"git branch --merged | grep -vE 'main|master|\\*' | xargs -n 1 git branch -D"
+  db =!"git checkout -q main && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done"
   rball = machete traverse --fetch --start-from=first-root
 [push]
-	default = current
+	default = simple
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/aaron.rosen/.gitignore_global
+	hooksPath = /Users/aaron.rosen/.gusto/githooks
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
