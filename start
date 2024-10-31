@@ -64,7 +64,7 @@ if ! command -v brew >/dev/null; then
 	echo "| Installing brew. |"
 	echo "--------------------"
 	if uname | grep Darwin; then
-		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 fi
 
@@ -83,9 +83,8 @@ brew update
 brew install cmake bash-git-prompt nvm ag ctags-exuberant gpg yamllint fzf git-machete
 
 # Set up latest version of neovim
-brew install --head neovim
+brew install neovim
 brew install asdf
-pip2 install --upgrade neovim
 pip3 install --upgrade neovim
 mkdir -p $HOME/.config/nvim
 rm $HOME/.config/nvim/init.vim
