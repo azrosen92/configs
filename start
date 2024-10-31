@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Useful global variables
 
 HOMEBREW_PREFIX="/usr/local"
