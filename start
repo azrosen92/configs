@@ -80,7 +80,11 @@ brew update
 
 # Install brew packages that vim plugins depend on and some of my most used
 # packages
-brew install cmake bash-git-prompt nvm ag ctags-exuberant gpg yamllint fzf git-machete
+brew install cmake nvm ag ctags-exuberant gpg yamllint fzf git-machete
+
+# Download and install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 # Set up latest version of neovim
 brew install neovim
