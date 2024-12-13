@@ -159,6 +159,7 @@ autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
 nnoremap <C-p> :FZF<CR>
+nnoremap <C-k> :Ag<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
@@ -233,7 +234,7 @@ nmap <leader>rn <Plug>(coc-rename)
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json', 'ruby', 'geojson']
-let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-tsserver']
 
 " Trigger solargraph to format ruby code
 let g:coc_user_config['solargraph.diagnostics'] = 'true'
@@ -254,6 +255,7 @@ vmap <leader>F <Plug>CtrlSFVwordExec
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_winsize = '25%'
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
@@ -266,6 +268,9 @@ Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 " ~~~~~~~~~~~~~~~ LSP Client
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" ~~~~~~~~~~~~~~~ Terraform formatting
+Plug 'hashivim/vim-terraform'
 
 " ~~~~~~~~~~~~~~~ Syntax highlighting
 " Puppet syntax highlighting, etc.
@@ -310,4 +315,4 @@ Plug 'tfnico/vim-gradle'
 Plug 'slim-template/vim-slim'
 call plug#end()
 
-colorscheme onehalfdark
+colorscheme spring-night
