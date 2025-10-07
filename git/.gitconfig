@@ -22,9 +22,9 @@
 	rbs = rebase --skip
 	lg = log --name-status --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	update = !"git co $GIT_MAIN && git pull && git co - && git rebase $GIT_MAIN"
-  com = !"git co $GIT_MAIN"
-  db =!"git checkout -q main && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done"
-  rball = machete traverse --fetch --start-from=first-root
+	com = !"git co $GIT_MAIN"
+	db =!"git checkout -q main && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done && git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short) %(committerdate:iso)' | while read branch date rest; do branchDate=$(date -j -f '%Y-%m-%d %H:%M:%S %z' \"$date\" '+%s' 2>/dev/null || echo 0); twoMonthsAgo=$(date -v-2m '+%s'); [[ $branchDate -lt $twoMonthsAgo && \"$branch\" != \"main\" ]] && git branch -D $branch 2>/dev/null; done"
+	rball = machete traverse --fetch --start-from=first-root
 [push]
 	default = simple
 [core]
