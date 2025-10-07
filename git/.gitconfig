@@ -4,6 +4,7 @@
 	name = Aaron Rosen
 	email = aaron.rosen@gusto.com
 	username = azrosen92
+	signingkey = /Users/aaron.rosen/.ssh/id_ed25519.pub
 [alias]
 	co = checkout
 	br = branch
@@ -43,3 +44,7 @@
 	defaultBranch = main
 [maintenance]
 	repo = /Users/aaron.rosen/workspace/zenpayroll
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
