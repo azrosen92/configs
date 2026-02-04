@@ -31,6 +31,7 @@
 	editor = nvim
 	excludesfile = /Users/aaron.rosen/.gitignore_global
 	hooksPath = /Users/aaron.rosen/.gusto/githooks
+	preloadindex = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -44,6 +45,7 @@
 	defaultBranch = main
 [maintenance]
 	repo = /Users/aaron.rosen/workspace/zenpayroll
+	repo = /Users/aaron.rosen/workspace/web
 [commit]
 	gpgsign = true
 [gpg]
