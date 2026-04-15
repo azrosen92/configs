@@ -164,6 +164,7 @@ nnoremap <C-k> :Ag<CR>
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
 noremap <leader>gh :GBrowse<CR>
+noremap <leader>pr :!gh pr view --web<CR>
 
 " ~~~~~~~~~~~~~ JSON stuff ~~~~~~~~~~
 " Format json blob
@@ -271,6 +272,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ~~~~~~~~~~~~~~~ Terraform formatting
 Plug 'hashivim/vim-terraform'
+
+" ~~~~~~~~~~~~~~~ XML formatting
+Plug 'chrisbra/vim-xml-runtime'
 
 " ~~~~~~~~~~~~~~~ Syntax highlighting
 " Puppet syntax highlighting, etc.
