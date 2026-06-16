@@ -30,7 +30,6 @@
 [core]
 	editor = nvim
 	excludesfile = /Users/aaron.rosen/.gitignore_global
-	hooksPath = /Users/aaron.rosen/.gusto/githooks
 	preloadindex = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
