@@ -158,6 +158,8 @@ set dictionary="/usr/dict/words"
 autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
 " ~~~~~~~~~~~~~~ Fuzzy Finder ~~~~~~~~~~~~~~~~~~
+" Tell FZF to use ripgrep and exclude specific folders
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!{.git,node_modules,vendor,dist}/*"'
 nnoremap <C-p> :FZF<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~

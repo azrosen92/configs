@@ -89,6 +89,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 # Set up latest version of neovim
 brew install neovim
 brew install asdf
+brew install rg
 pip3 install --upgrade neovim
 mkdir -p $HOME/.config/nvim
 rm $HOME/.config/nvim/init.vim
