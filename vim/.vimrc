@@ -228,6 +228,29 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" ~~~~~~~~~~~~~~ Gusto Partner API: jump to matching rswag spec ~~~~~~~~~~~~~~
+" From a cursor position inside an operation block in Gusto-Partner-API's
+" src/api.v<version>.yaml, jump to the zenpayroll rswag spec that defines
+" the same operationId. Lookup logic lives in goto_rswag.rb alongside this
+" vimrc; this just wires up how it's invoked.
+let s:goto_rswag_script = expand('~/.dev-configs/vim/goto_rswag.rb')
+
+function! s:GotoRswagSpec() abort
+  let l:output = systemlist('ruby ' . shellescape(s:goto_rswag_script) . ' ' . shellescape(expand('%:p')) . ' ' . line('.'))
+
+  if v:shell_error != 0 || len(l:output) < 2
+    echohl ErrorMsg
+    echom 'GotoRswagSpec: ' . join(l:output, ' ')
+    echohl None
+    return
+  endif
+
+  execute 'vsplit ' . fnameescape(l:output[0])
+  execute l:output[1]
+endfunction
+
+nnoremap <silent> <leader>gr :call <SID>GotoRswagSpec()<CR>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
