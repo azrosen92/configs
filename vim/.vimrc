@@ -229,19 +229,23 @@ function! s:show_documentation()
   endif
 endfunction
 
-" ~~~~~~~~~~~~~~ Gusto Partner API: jump to matching rswag spec ~~~~~~~~~~~~~~
-" From a cursor position inside an operation block in Gusto-Partner-API's
-" src/api.v<version>.yaml, jump to the zenpayroll rswag spec that defines
-" the same operationId. Lookup logic lives in goto_rswag.rb alongside this
-" vimrc; this just wires up how it's invoked.
+" ~~~~~~~~~~~~~~ Gusto Partner API <-> zenpayroll rswag jumps ~~~~~~~~~~~~~~
+" <leader>gr: from a cursor position inside an operation block in
+" Gusto-Partner-API's src/api.v<version>.yaml, jump to the zenpayroll rswag
+" spec that defines the same operationId.
+" <leader>go: the reverse - from a cursor position inside a get/post/etc.
+" block in a zenpayroll rswag spec, jump to the matching OAS operation.
+" Lookup logic lives in goto_rswag.rb / goto_oas.rb alongside this vimrc;
+" this just wires up how they're invoked.
 let s:goto_rswag_script = expand('~/.dev-configs/vim/goto_rswag.rb')
+let s:goto_oas_script = expand('~/.dev-configs/vim/goto_oas.rb')
 
-function! s:GotoRswagSpec() abort
-  let l:output = systemlist('ruby ' . shellescape(s:goto_rswag_script) . ' ' . shellescape(expand('%:p')) . ' ' . line('.'))
+function! s:JumpToScriptResult(script, label) abort
+  let l:output = systemlist('ruby ' . shellescape(a:script) . ' ' . shellescape(expand('%:p')) . ' ' . line('.'))
 
   if v:shell_error != 0 || len(l:output) < 2
     echohl ErrorMsg
-    echom 'GotoRswagSpec: ' . join(l:output, ' ')
+    echom a:label . ': ' . join(l:output, ' ')
     echohl None
     return
   endif
@@ -250,7 +254,16 @@ function! s:GotoRswagSpec() abort
   execute l:output[1]
 endfunction
 
+function! s:GotoRswagSpec() abort
+  call s:JumpToScriptResult(s:goto_rswag_script, 'GotoRswagSpec')
+endfunction
+
+function! s:GotoOasSpec() abort
+  call s:JumpToScriptResult(s:goto_oas_script, 'GotoOasSpec')
+endfunction
+
 nnoremap <silent> <leader>gr :call <SID>GotoRswagSpec()<CR>
+nnoremap <silent> <leader>go :call <SID>GotoOasSpec()<CR>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
