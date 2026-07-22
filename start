@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Useful global variables
 
 HOMEBREW_PREFIX="/usr/local"
@@ -40,6 +39,15 @@ echo "Linking global gitignore"
 rm $HOME/.gitignore_global
 ln -s $DEV_CONFIGS_ROOT/git/.gitignore_global $HOME/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
+
+# link claude code configs
+echo "Linking claude code configs"
+rm -rf $HOME/.claude/agents
+ln -s $DEV_CONFIGS_ROOT/.claude/agents $HOME/.claude
+rm -rf $HOME/.claude/skills
+ln -s $DEV_CONFIGS_ROOT/.claude/skills $HOME/.claude
+rm $HOME/.claude/CLAUDE.md
+ln -s $DEV_CONFIGS_ROOT/.claude/CLAUDE.md $HOME/.claude/CLAUDE.md
 
 ##
 #

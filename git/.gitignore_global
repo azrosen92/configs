@@ -2,3 +2,8 @@
 tags
 tags*
 **/*.js.map
+appmap
+.cursor/*
+.claude/
+mise.toml
+.playwright-mcp/

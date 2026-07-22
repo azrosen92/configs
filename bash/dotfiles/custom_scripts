@@ -1,5 +1,9 @@
 #!/bin/bash
 
+c() {
+  tmux new-session "nvim ." \; split-window -h -l 25% "claude ."
+}
+
 clear_node_deps() {
   for dir in ./*; do
     if [[ -d "$dir/node_modules" ]]; then

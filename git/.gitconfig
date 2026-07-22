@@ -2,8 +2,9 @@
 [user]
 # Please adapt and uncomment the following lines:
 	name = Aaron Rosen
-	email = azrosen92@gmail.com
+	email = aaron.rosen@gusto.com
 	username = azrosen92
+	signingkey = /Users/aaron.rosen/.ssh/id_ed25519.pub
 [alias]
 	co = checkout
 	br = branch
@@ -25,10 +26,10 @@
 	db = !"git checkout -q $GIT_MAIN && twoMonthsAgo=$(date -v-2m '+%s') && mergedBranches=$(git branch --merged $GIT_MAIN) && git for-each-ref refs/heads/ --format='%(refname:short) %(authordate:unix)' | while read branch timestamp; do [[ \"$branch\" != \"$GIT_MAIN\" && $timestamp -lt $twoMonthsAgo ]] && echo \"$mergedBranches\" | grep -qw \"$branch\" && echo \"Would delete: $branch\"; done"
 	rball = machete traverse --fetch --start-from=first-root
 [push]
-	default = current
+	default = simple
 [core]
 	editor = nvim
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/aaron.rosen/.gitignore_global
 	preloadindex = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -39,3 +40,12 @@
 	rebase = true
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
+[maintenance]
+	repo = /Users/aaron.rosen/workspace/zenpayroll
+	repo = /Users/aaron.rosen/workspace/web
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh

@@ -161,6 +161,7 @@ autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 " Tell FZF to use ripgrep and exclude specific folders
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!{.git,node_modules,vendor,dist}/*"'
 nnoremap <C-p> :FZF<CR>
+nnoremap <C-k> :Ag<CR>
 
 " ~~~~~~~~~~~~~~ Vim fugitive (git tool) ~~~~~~~~~~~~~~
 noremap <leader>gd :Gvdiff<CR>
@@ -227,6 +228,49 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" ~~~~~~~~~~~~~~ Gusto Partner API <-> zenpayroll rswag jumps ~~~~~~~~~~~~~~
+" <leader>gr: from a cursor position inside an operation block in
+" Gusto-Partner-API's src/api.v<version>.yaml, jump to the zenpayroll rswag
+" spec that defines the same operationId.
+" <leader>go: the reverse - from a cursor position inside a get/post/etc.
+" block in a zenpayroll rswag spec, jump to the matching OAS operation.
+" Lookup logic lives in goto_rswag.rb / goto_oas.rb alongside this vimrc;
+" this just wires up how they're invoked.
+let s:goto_rswag_script = expand('~/.dev-configs/vim/goto_rswag.rb')
+let s:goto_oas_script = expand('~/.dev-configs/vim/goto_oas.rb')
+
+function! s:JumpToScriptResult(script, label) abort
+  let l:output = systemlist('ruby ' . shellescape(a:script) . ' ' . shellescape(expand('%:p')) . ' ' . line('.'))
+
+  if v:shell_error != 0 || len(l:output) < 2
+    echohl ErrorMsg
+    echom a:label . ': ' . join(l:output, ' ')
+    echohl None
+    return
+  endif
+
+  execute 'vsplit ' . fnameescape(l:output[0])
+  execute l:output[1]
+endfunction
+
+function! s:GotoRswagSpec() abort
+  call s:JumpToScriptResult(s:goto_rswag_script, 'GotoRswagSpec')
+endfunction
+
+function! s:GotoOasSpec() abort
+  call s:JumpToScriptResult(s:goto_oas_script, 'GotoOasSpec')
+endfunction
+
+nnoremap <silent> <leader>gr :call <SID>GotoRswagSpec()<CR>
+nnoremap <silent> <leader>go :call <SID>GotoOasSpec()<CR>
+
+" ~~~~~~~~~~~~~~ Git worktree tabs ~~~~~~~~~~~~~~
+" <leader>gw: pick a git worktree and open it in its own tab (tab-local cwd
+" + NERDTree rooted there). Jumps to the existing tab instead of duplicating
+" it if that worktree is already open. Script lives alongside this vimrc.
+source ~/.dev-configs/vim/worktree.vim
+nnoremap <leader>gw :Worktree<CR>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
@@ -236,7 +280,7 @@ nmap <leader>rn <Plug>(coc-rename)
 let g:coc_user_config = {}
 let g:coc_user_config['coc.preferences.jumpCommand'] = ':vsp'
 let g:coc_user_config['coc.preferences.formatOnSaveFiletypes'] = ['elixir', 'javascript', 'typescript', 'typescriptreact', 'json', 'ruby', 'geojson']
-let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-solargraph', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-json', 'coc-prettier', 'coc-tsserver']
 
 " Trigger solargraph to format ruby code
 let g:coc_user_config['solargraph.diagnostics'] = 'true'
@@ -257,6 +301,7 @@ vmap <leader>F <Plug>CtrlSFVwordExec
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_winsize = '25%'
 
 call plug#begin('~/.vim/plugged')
 " ~~~~~~~~~~~~~~~ Themes
@@ -308,6 +353,8 @@ Plug 'google/yapf'
 Plug 'jparise/vim-graphql'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'dense-analysis/ale'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'cuducos/yaml.nvim'
 
 " SYNTAX HIGHLIGHTING
 Plug 'rodjek/vim-puppet'
@@ -319,4 +366,4 @@ Plug 'tfnico/vim-gradle'
 Plug 'slim-template/vim-slim'
 call plug#end()
 
-colorscheme onehalfdark
+colorscheme iceberg
