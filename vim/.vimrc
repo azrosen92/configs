@@ -264,6 +264,13 @@ endfunction
 
 nnoremap <silent> <leader>gr :call <SID>GotoRswagSpec()<CR>
 nnoremap <silent> <leader>go :call <SID>GotoOasSpec()<CR>
+
+" ~~~~~~~~~~~~~~ Git worktree tabs ~~~~~~~~~~~~~~
+" <leader>gw: pick a git worktree and open it in its own tab (tab-local cwd
+" + NERDTree rooted there). Jumps to the existing tab instead of duplicating
+" it if that worktree is already open. Script lives alongside this vimrc.
+source ~/.dev-configs/vim/worktree.vim
+nnoremap <leader>gw :Worktree<CR>
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
