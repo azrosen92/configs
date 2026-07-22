@@ -6,3 +6,4 @@ appmap
 .cursor/*
 .claude/
 mise.toml
+.playwright-mcp/
